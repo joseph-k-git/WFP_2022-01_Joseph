@@ -80,8 +80,9 @@
             @endif
 
             <div class="content">
+                <img src="160418015_photo.webp"/>
                 <div class="title m-b-md">
-                    Laravel
+                    160418015 Joseph Laravel 7
                 </div>
 
                 <div class="links">
