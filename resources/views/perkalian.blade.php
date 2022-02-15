@@ -82,7 +82,21 @@
             <div class="content">
                 <img src="/160418015_photo.webp"/>
                 <div class="title m-b-md">
-                    Hello {{ $name }}
+                    {{ $multiplier }} * {{ $multiplicand }} = {{ $multiplier * $multiplicand }}
+                </div>
+                <div class="links">
+                    @if ($multiplier < $multiplicand)
+                        {{ $multiplier }} lebih kecil dari {{ $multiplicand }}
+                    @elseif ($multiplier > $multiplicand)
+                        {{ $multiplier }} lebih besar dari {{ $multiplicand }}
+                    @else
+                        {{ $multiplier }} sama dengan {{ $multiplicand }}
+                    @endif
+                </div>
+                <div class="links">
+                    @for ($i=0; $i<5; $i++)
+                        The current value is {{ $i }}<br>
+                    @endfor
                 </div>
 
                 <div class="links">
