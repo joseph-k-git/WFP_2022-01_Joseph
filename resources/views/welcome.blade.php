@@ -82,7 +82,7 @@
             <div class="content">
                 <img src="/160418015_photo.webp"/>
                 <div class="title m-b-md">
-                    Hello {{ $name }}
+                    Hello Joseph
                 </div>
 
                 <div class="links">
