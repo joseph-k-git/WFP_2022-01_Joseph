@@ -18,3 +18,5 @@ Route::get('/', function () {
 });
 
 Route::resource('/medicine', 'MedicineController');
+
+Route::resource('/category', 'CategoryController');

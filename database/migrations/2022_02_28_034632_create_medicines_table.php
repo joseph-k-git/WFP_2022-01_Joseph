@@ -18,11 +18,12 @@ class CreateMedicinesTable extends Migration
             $table->string('generic_name', 511);
             $table->string('form', 255);
             $table->string('restriction_formula', 255)->nullable();
+            $table->double('price', 12, 2);
             $table->text('description')->nullable();
             $table->unsignedBigInteger('category_id'); // Firstly, create column.
-            $table->tinyInteger('faskes_tk1');
-            $table->tinyInteger('faskes_tk2');
-            $table->tinyInteger('faskes_tk3');
+            $table->boolean('faskes1')->default(0);
+            $table->boolean('faskes2')->default(0);
+            $table->boolean('faskes3')->default(0);
             $table->timestamps();
 
             $table->foreign('category_id') // Then, set the column as a foreign key;
