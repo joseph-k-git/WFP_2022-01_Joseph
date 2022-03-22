@@ -13,6 +13,18 @@ class MedicineSeeder extends Seeder
     {
         DB::table('medicines')->insert(
             ['generic_name' => 'asam mefenamat',
+             'form' => ' susp 100 mg/5 mL',
+             'restriction_formula' =>'1 btl/kasus.',
+             'price' => 15000,
+             'description' =>'',
+             'faskes1' => '1',
+             'faskes2' => '1',
+             'faskes3' => '1',
+             'image'=>'asammefenamat100.jpg',
+             'category_id'=>1,
+        ]);
+        DB::table('medicines')->insert(
+            ['generic_name' => 'asam mefenamat',
              'form' => 'kaps 250 mg',
              'restriction_formula' =>'30 kaps/bulan.',
              'price' => 10000,
@@ -20,7 +32,8 @@ class MedicineSeeder extends Seeder
              'faskes1' => '1',
              'faskes2' => '1',
              'faskes3' => '1',
-             'category_id'=>1
+             'image'=>'asammefenamat250.jpg',
+             'category_id'=>1,
         ]);
         DB::table('medicines')->insert(
             ['generic_name' => 'asam mefenamat',
@@ -31,7 +44,8 @@ class MedicineSeeder extends Seeder
              'faskes1' => '1',
              'faskes2' => '1',
              'faskes3' => '1',
-             'category_id'=>1
+             'image'=>'asammefenamat500.jpg',
+             'category_id'=>1,
         ]);
         DB::table('medicines')->insert(
             ['generic_name' => 'ibuprofen',
@@ -42,7 +56,8 @@ class MedicineSeeder extends Seeder
              'faskes1' => '1',
              'faskes2' => '1',
              'faskes3' => '1',
-             'category_id'=>1
+             'image'=>'ibuprofen200.jpg',
+             'category_id'=>1,
         ]);
         DB::table('medicines')->insert(
             ['generic_name' => 'ibuprofen',
@@ -53,18 +68,8 @@ class MedicineSeeder extends Seeder
              'faskes1' => '1',
              'faskes2' => '1',
              'faskes3' => '1',
-             'category_id'=>1
-        ]);
-        DB::table('medicines')->insert(
-            ['generic_name' => 'asam mefenamat',
-             'form' => ' susp 100 mg/5 mL',
-             'restriction_formula' =>'1 btl/kasus.',
-             'price' => 15000,
-             'description' =>'',
-             'faskes1' => '1',
-             'faskes2' => '1',
-             'faskes3' => '1',
-             'category_id'=>1
+             'image'=>'ibuprofen400.jpg',
+             'category_id'=>1,
         ]);
         DB::table('medicines')->insert(
             ['generic_name' => 'ketoprofen',
@@ -75,7 +80,8 @@ class MedicineSeeder extends Seeder
              'faskes1' => '1',
              'faskes2' => '1',
              'faskes3' => '1',
-             'category_id'=>1
+             'image'=>'ketoprofen50.jpg',
+             'category_id'=>1,
         ]);
         DB::table('medicines')->insert(
             ['generic_name' => 'ketoprofen',
@@ -86,7 +92,8 @@ class MedicineSeeder extends Seeder
              'faskes1' => '1',
              'faskes2' => '1',
              'faskes3' => '1',
-             'category_id'=>1
+             'image'=>'ketoprofen100.jpg',
+             'category_id'=>1,
         ]);
 
         //kategori 2
@@ -99,7 +106,8 @@ class MedicineSeeder extends Seeder
              'faskes1' => '1',
              'faskes2' => '1',
              'faskes3' => '1',
-             'category_id'=>2
+             'image'=>'alopurinol100.jpg',
+             'category_id'=>2,
         ]);
         DB::table('medicines')->insert(
             ['generic_name' => 'alopurinol',
@@ -110,7 +118,8 @@ class MedicineSeeder extends Seeder
              'faskes1' => '1',
              'faskes2' => '1',
              'faskes3' => '1',
-             'category_id'=>2
+             'image'=>'alopurinol300.jpg',
+             'category_id'=>2,
         ]);
         DB::table('medicines')->insert(
             ['generic_name' => 'kolkisin',
@@ -121,7 +130,8 @@ class MedicineSeeder extends Seeder
              'faskes1' => '1',
              'faskes2' => '1',
              'faskes3' => '1',
-             'category_id'=>2
+             'image'=>'kolkisin.png',
+             'category_id'=>2,
         ]);
 
 
@@ -135,7 +145,8 @@ class MedicineSeeder extends Seeder
              'faskes1' => '0',
              'faskes2' => '1',
              'faskes3' => '1',
-             'category_id'=>3
+             'image'=>'bupivakain.jpeg',
+             'category_id'=>3,
         ]);
         DB::table('medicines')->insert(
             ['generic_name' => 'lidokain',
@@ -146,7 +157,8 @@ class MedicineSeeder extends Seeder
              'faskes1' => '1',
              'faskes2' => '1',
              'faskes3' => '1',
-             'category_id'=>3
+             'image'=>'lidokain05.jpg',
+             'category_id'=>3,
         ]);
         DB::table('medicines')->insert(
             ['generic_name' => 'lidokain',
@@ -157,7 +169,8 @@ class MedicineSeeder extends Seeder
              'faskes1' => '1',
              'faskes2' => '1',
              'faskes3' => '1',
-             'category_id'=>3
+             'image'=>'lidokain10.jpg',
+             'category_id'=>3,
         ]);
 
         //kategori 4
@@ -170,6 +183,7 @@ class MedicineSeeder extends Seeder
              'faskes1' => '1',
              'faskes2' => '1',
              'faskes3' => '1',
+             'image'=>'propranolol.jpg',
              'category_id'=>4
         ]);
 
@@ -189,6 +203,7 @@ class MedicineSeeder extends Seeder
              'faskes1' => '1',
              'faskes2' => '1',
              'faskes3' => '1',
+             'image'=>'betahistin6.jpg',
              'category_id'=>5
         ]);
 
@@ -204,6 +219,7 @@ class MedicineSeeder extends Seeder
              'faskes1' => '0',
              'faskes2' => '1',
              'faskes3' => '1',
+             'image'=>'betahistin24.jpg',
              'category_id'=>5
         ]);
     }
