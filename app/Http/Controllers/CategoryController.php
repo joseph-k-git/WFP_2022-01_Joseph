@@ -108,4 +108,17 @@ class CategoryController extends Controller
 
         return view('report.list_medicines_by_category', compact('id_category','name_category','result','getTotalData'));
     }
+
+    public function highest_price_per_category()
+    {
+        $result = DB::select(DB::raw("SELECT * FROM medicines AS m
+                                        INNER JOIN (
+                                            SELECT category_id, max(price) AS price FROM medicines
+                                            INNER JOIN categories
+                                            GROUP BY category_id) AS a
+                                        ON m.category_id = a.category_id AND m.price=a.price
+                                        INNER JOIN categories ON categories.id = m.category_id
+                                        ORDER BY m.category_id ASC;"));
+        return view('report.medicine_highest_price_per_category', compact('result'));
+    }
 }
