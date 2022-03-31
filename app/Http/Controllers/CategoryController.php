@@ -90,4 +90,22 @@ class CategoryController extends Controller
     {
         //
     }
+
+    public function showlist($id_category)
+    {
+        // Method #1: Query Builder
+        $result = DB::table('categories')
+            ->join('medicines','categories.id','=','medicines.category_id')
+            ->where('categories.id','=','$id_category')
+            ->get(); // ->get() always return ArrayList / Collection
+        $getTotalData = $result->count();
+
+        // Method #2: Eloquent
+        $data = Category::find($id_category); // return a single model/class
+        $name_category = $data->name;
+        $result = $data->medicines; // ->medicines is Relationship Eloquent model and will return ArrayList/Collection because it has 'hasMany' statement.
+        $getTotalData = $result ? $result->count() : 0; // if there is no result, then getTotalData is set to 0.
+
+        return view('report.list_medicines_by_category', compact('id_category','name_category','result','getTotalData'));
+    }
 }
