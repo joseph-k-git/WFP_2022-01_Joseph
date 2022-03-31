@@ -6,6 +6,8 @@ use App\Category;
 use Illuminate\Http\Request;
 use DB;
 
+use App\Medicine; //test
+
 class CategoryController extends Controller
 {
     /**
@@ -15,7 +17,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        //$categories = DB::table('categories')->get(); // Fluent Query Builder
+
         $categories = Category::all(); // Eloquent ORM
+
         return view('category.index', ['categories' => $categories]);
     }
 

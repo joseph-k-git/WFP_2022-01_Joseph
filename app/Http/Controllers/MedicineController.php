@@ -62,7 +62,7 @@ class MedicineController extends Controller
      */
     public function show(Medicine $medicine)
     {
-        //
+        return view('medicine.show', compact('medicine'));
     }
 
     /**
@@ -97,5 +97,49 @@ class MedicineController extends Controller
     public function destroy(Medicine $medicine)
     {
         //
+    }
+
+    public function coba1()
+    {
+        // Query Builder filter
+        $result = DB::table('medicines')
+            ->where('price','>',20000)
+            ->get();
+
+        $result = DB::table('medicines')
+            ->where('generic_name','like','%fen')
+            ->get();
+        
+        // Group By
+        $result = DB::table('medicines')
+            ->select('generic_name')
+            ->groupBy('generic_name')
+            ->get();
+
+        // Agregate
+        $result = DB::table('medicines')->count();
+
+        $result = DB::table('medicines')->max('price');
+
+        // Filter + Aggregate
+        $result = DB::table('medicines')
+            ->where('generic_name','like','%fen')
+            ->avg('price');
+
+        // Join
+        $result = DB::table('medicines')
+            ->join('categories','medicines.category_id', '=', 'categories.id')
+            ->get();
+
+        // Join + Sort
+        $result = DB::table('medicines')
+            ->join('categories','medicines.category_id','=','categories.id')
+            ->orderBy('price','desc')
+            ->get();
+        
+        // Eloquent
+        $result = Medicine::where('price','>',20000)->get();
+        
+        dd($result);
     }
 }

@@ -20,3 +20,5 @@ Route::get('/', function () {
 Route::resource('/medicine', 'MedicineController');
 
 Route::resource('/category', 'CategoryController');
+
+Route::get('/coba1', 'MedicineController@coba1');
