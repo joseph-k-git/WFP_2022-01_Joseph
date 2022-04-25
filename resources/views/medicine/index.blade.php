@@ -32,6 +32,7 @@
         <th>Kategori</th>
         <th>Foto</th>
         <th>Harga</th>
+        <th>Detail</th>
       </tr>
     </thead>
     <tbody>
@@ -47,6 +48,11 @@
           </a>
         </td>
         <td>{{ $d->price }}</td>
+        <td>
+          <a class='btn btn-info' href="{{ route('medicine.show', $d->id) }}" data-target="#show{{$d->id}}" data-toggle='modal'>
+            Detail
+          </a>
+        </td>
       </tr>
 
       <div class="modal fade" id="detail_{{$d->id}}">
@@ -56,13 +62,23 @@
               <h4 class="modal-title">{{$d->generic_name}}</h4>
             </div>
             <div class="modal-body">
-              <img src="{{ asset('/images/'.$d->image) }}" height=400px><br>
+              <img src="{{ asset('/images/'.$d->image) }}" height="400px"><br>
               <b>Description:</b><br>
               {{ $d->restriction_formula }}
             </div>
           </div>
         </div>
       </div>
+
+      <div class="modal fade" id="show{{$d->id}}" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- put animated gif here -->
+          </div>
+        </div>
+      </div>
+    </td>
+
     @endforeach
     </tbody>
   </table>

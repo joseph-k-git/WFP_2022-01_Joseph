@@ -1,8 +1,7 @@
-@extends('layout.conquer')
-
-@section('content')
-<div class="container">
+<div class="modal-header">
   <h2>Daftar Obat</h2>
+</div>
+<div class="modal-body">
   <table class="table">
     <thead>
       <tr>
@@ -38,4 +37,8 @@
     </tbody>
   </table>
 </div>
-@endsection
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">
+    Close
+  </button>
+</div>
