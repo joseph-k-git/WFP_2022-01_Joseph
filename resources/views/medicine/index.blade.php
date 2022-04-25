@@ -1,8 +1,28 @@
 @extends('layout.conquer')
 
 @section('content')
+
+<h3 class="page-title">
+    Daftar Obat <small>daftar semua bbat yang ada di apotik ini</small>
+</h3>
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="index.html">Home</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+        <li>
+            <a href="#">Medicine</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+    </ul>
+    <div class="page-toolbar">
+        <!-- tempat action button -->
+    </div>
+</div>
+
 <div class="container">
-  <h2>Daftar Obat</h2>
   <table class="table table-hover">
     <thead>
       <tr>
@@ -21,9 +41,28 @@
         <td>{{ $d->form }}</td>
         <td>{{ $d->restriction_formula }}</td>
         <td>{{ $d->category->name }}</td>
-        <td><img src="{{ asset('/images/'.$d->image) }}" height="100px"/></td>
+        <td>
+          <a href="#detail_{{$d->id}}" data-toggle="modal">
+            <img src="{{ asset('/images/'.$d->image) }}" height="100px"/>
+          </a>
+        </td>
         <td>{{ $d->price }}</td>
       </tr>
+
+      <div class="modal fade" id="detail_{{$d->id}}">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">{{$d->generic_name}}</h4>
+            </div>
+            <div class="modal-body">
+              <img src="{{ asset('/images/'.$d->image) }}" height=400px><br>
+              <b>Description:</b><br>
+              {{ $d->restriction_formula }}
+            </div>
+          </div>
+        </div>
+      </div>
     @endforeach
     </tbody>
   </table>
@@ -41,4 +80,5 @@
   @endforeach
   </div>
 </div>
+
 @endsection
