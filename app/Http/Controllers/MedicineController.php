@@ -145,10 +145,16 @@ class MedicineController extends Controller
 
     public function showInfo()
     {
+        $result = Medicine::orderBy('price', 'desc')->first();
+
         return response()->json(
             array(
                 'status' => 'oke',
-                'msg' => '<div class="alert alert-info">Did you know?<br>This message is sent by a Controller</div>'
+                'msg' => 
+                    '<div class="alert alert-info">'.
+                    'Did you know?<br>'.
+                    'Harga obat termahal adalah '.$result->generic_name.' '.$result->form.' dengan harga '.$result->price.
+                    '</div>',
             ),
             200
         );
