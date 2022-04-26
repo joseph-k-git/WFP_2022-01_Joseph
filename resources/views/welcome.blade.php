@@ -15,6 +15,12 @@
             <a href="#">Welcome</a>
             <i class="fa fa-angle-right"></i>
         </li>
+        
+        <li>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="#" onclick="showInfo()">
+            <i class="icon-bulb"></a></i>
+        </li>
     </ul>
     <div class="page-toolbar">
         <!-- tempat action button -->
@@ -22,6 +28,7 @@
         <button class="btn btn-info">Help</button>
     </div>
 </div>
+<div id='divshowinfo'></div>
 <div class="flex-center position-ref full-height">
     @if (Route::has('login'))
         <div class="top-right links">
@@ -77,3 +84,19 @@
 </div>
 <!-- /.modal -->
 @endsection
+
+@section('javascript')
+<script>
+    function showInfo()
+    {
+        $.ajax({
+            type: 'POST',
+            url: '{{ route("medicine.showInfo") }}',
+            data: '_token=<?php echo csrf_token() ?>',
+            success: function(data)
+            {
+                $('#divshowinfo').html(data.msg);
+            },
+        });
+    }
+</script>

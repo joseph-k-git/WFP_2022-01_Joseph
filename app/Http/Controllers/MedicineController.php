@@ -142,4 +142,15 @@ class MedicineController extends Controller
         
         dd($result);
     }
+
+    public function showInfo()
+    {
+        return response()->json(
+            array(
+                'status' => 'oke',
+                'msg' => '<div class="alert alert-info">Did you know?<br>This message is sent by a Controller</div>'
+            ),
+            200
+        );
+    }
 }

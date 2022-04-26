@@ -73,7 +73,7 @@
       <div class="modal fade" id="show{{$d->id}}" tabindex="-1" role="basic" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
-            <!-- put animated gif here -->
+            <img src="{{ asset('/assets/img/ajax-modal-loading.gif') }}" alt="" class="loading">
           </div>
         </div>
       </div>
