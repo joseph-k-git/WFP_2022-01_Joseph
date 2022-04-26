@@ -15,6 +15,7 @@
           <th>ID</th>
           <th>Category Name</th>
           <th>Description</th>
+          <th>Detail</th>
         </tr>
       </thead>
       <tbody>
@@ -34,6 +35,11 @@
             </div>
           @endforeach
           </td>
+          <td>
+            <a class='btn btn-xs btn-info' data-toggle='modal' data-target='#myModal' onclick='showProducts({{ $category->id }})'>
+              Detail
+            </a>
+          </td>
         </tr>
       @endforeach
       </tbody>
@@ -41,4 +47,41 @@
   </div>
 </div>
 <!-- END Portlet PORTLET-->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="basic" aria-hidden="true">
+  <div class="modal-dialog modal-wide">
+    <div class="modal-content" id="showproducts">
+      <div class="modal-header">
+        <h4 class="modal-title">Detail Category</h4>
+      </div>
+      <div class="modal-body">
+        <!--loading animated gif can put here-->
+        <img src="{{ asset('/assets/img/ajax-modal-loading.gif') }}" alt="" class="loading">
+      </div>      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection
+
+@section('javascript')
+<script>
+    function showProducts(category_id)
+    {
+        $.ajax({
+            type: 'GET',
+            url: '{{ url("/report/listmedicine/") }}'+'/'+category_id,
+            data: {
+              '_token':'<?php echo csrf_token() ?>',
+              'category_id':category_id,
+            },
+            success: function(data)
+            {
+                $('#showproducts').html(data);
+            },
+        });
+    }
+</script>
 @endsection

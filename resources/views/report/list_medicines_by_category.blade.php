@@ -1,11 +1,10 @@
-@extends('layout.conquer')
-
-@section('content')
-<div class="container">
+<div class="modal-header">
   <h2>List Medicines by Category</h2>
   <p>ID Category: {{ $id_category }} with name: {{ $name_category }}</p>
   <hr>
   <p>Total rows: {{ $getTotalData }}</p>
+</div>
+<div class="modal-body">
   <table class="table table-hover">
     <thead>
       <tr>
@@ -29,4 +28,8 @@
     </tbody>
   </table>
 </div>
-@endsection
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">
+    Close
+  </button>
+</div>

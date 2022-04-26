@@ -92,7 +92,7 @@
         $.ajax({
             type: 'POST',
             url: '{{ route("medicine.showInfo") }}',
-            data: '_token=<?php echo csrf_token() ?>',
+            data: '_token':'<?php echo csrf_token() ?>',
             success: function(data)
             {
                 $('#divshowinfo').html(data.msg);
