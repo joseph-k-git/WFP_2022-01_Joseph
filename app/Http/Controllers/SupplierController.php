@@ -43,6 +43,8 @@ class SupplierController extends Controller
         $data->address = $request->get('address');
         
         $data->save();
+
+        return redirect()->route('supplier.index')->with('status','Supplier has been added');
     }
 
     /**

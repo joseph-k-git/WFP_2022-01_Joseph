@@ -6,10 +6,13 @@
     List of Suppliers <small>daftar semua supplier</small>
 </h3>
 <div class="page-bar">
+  
     @if(session('status'))
     <div class="alert alert-success">
         {{ session('status') }}
     </div>
+    @endif
+
     <ul class="page-breadcrumb">
         <li>
             <i class="fa fa-home"></i>
@@ -24,7 +27,6 @@
     <div class="page-toolbar">
         <!-- tempat action button -->
     </div>
-    @endif
 </div>
 
 <div class="container">
