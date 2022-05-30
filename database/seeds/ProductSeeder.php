@@ -12,7 +12,7 @@ class ProductSeeder extends Seeder
     public function run()
     {
         DB::table('products')->insert([
-            'product_name' => 'Master',
+            'product_name' => 'Masker',
             'product_price' => 5000,
             'category_id' => 1,
         ]);

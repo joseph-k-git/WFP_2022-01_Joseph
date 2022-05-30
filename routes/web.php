@@ -21,6 +21,8 @@ Route::resource('/medicine', 'MedicineController');
 
 Route::resource('/category', 'CategoryController');
 
+Route::resource('/supplier', 'SupplierController');
+
 Route::get('/coba1', 'MedicineController@coba1');
 
 Route::get('/report/listmedicine/{id}', 'CategoryController@showlist')->name('reportShowMedicine');
