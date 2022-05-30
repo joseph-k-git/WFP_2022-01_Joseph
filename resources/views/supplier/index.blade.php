@@ -24,6 +24,7 @@
     <div class="page-toolbar">
         <!-- tempat action button -->
     </div>
+    @endif
 </div>
 
 <div class="container">
@@ -40,15 +41,16 @@
     <tbody>
     @foreach($result as $d)
       <tr>
-        <td>{{ $data->name }}</td>
-        <td>{{ $data->address }}</td>
+        <td>{{ $d->name }}</td>
+        <td>{{ $d->address }}</td>
         <td>
-            <a href="{{  }}" class="btn btn-warning">Edit</a>
-            <a href="{{  }}" class="btn btn-danger">Hapus</a>
+            <a href="#" class="btn btn-warning">Edit</a>
+            <a href="#" class="btn btn-danger">Hapus</a>
         </td>
       </tr>
     @endforeach
     </tbody>
   </table>
 </div>
+
 @endsection
