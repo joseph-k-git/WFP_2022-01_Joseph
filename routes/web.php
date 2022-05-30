@@ -23,6 +23,8 @@ Route::resource('/category', 'CategoryController');
 
 Route::resource('/supplier', 'SupplierController');
 
+Route::resource('/transaction', 'TransactionController');
+
 Route::get('/coba1', 'MedicineController@coba1');
 
 Route::get('/report/listmedicine/{id}', 'CategoryController@showlist')->name('reportShowMedicine');
@@ -30,3 +32,5 @@ Route::get('/report/listmedicine/{id}', 'CategoryController@showlist')->name('re
 Route::get('/report/highestprices', 'CategoryController@highest_price_per_category')->name('reportHighestPricePerCategory');
 
 Route::post('/medicine/showInfo', 'MedicineController@showInfo')->name('medicine.showInfo');
+
+Route::post('/transaction/showDataAjax', 'TransactionController@showAjax')->name('transaction.showAjax');
