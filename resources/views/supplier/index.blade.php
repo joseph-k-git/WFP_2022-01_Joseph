@@ -46,7 +46,7 @@
         <td>{{ $d->name }}</td>
         <td>{{ $d->address }}</td>
         <td>
-            <a href="#" class="btn btn-warning">Edit</a>
+            <a href="{{ url('/supplier/'.$d->id.'/edit') }}" class="btn btn-warning">Edit</a>
             <a href="#" class="btn btn-danger">Hapus</a>
         </td>
       </tr>
