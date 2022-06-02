@@ -66,7 +66,8 @@ class SupplierController extends Controller
      */
     public function edit(Supplier $supplier)
     {
-        dd($supplier);
+        $data = $supplier;
+        return view('supplier.edit', compact('data'));
     }
 
     /**
@@ -78,7 +79,12 @@ class SupplierController extends Controller
      */
     public function update(Request $request, Supplier $supplier)
     {
-        //
+        $supplier->name = $request->get('name');
+        $supplier->address = $request->get('address');
+
+        $supplier->save();
+
+        return redirect()->route('supplier.index')->with('status', 'Supplier data has been changed');
     }
 
     /**
