@@ -47,7 +47,11 @@
         <td>{{ $d->address }}</td>
         <td>
             <a href="{{ url('/supplier/'.$d->id.'/edit') }}" class="btn btn-warning">Edit</a>
-            <a href="#" class="btn btn-danger">Hapus</a>
+            <form method="POST" action="{{ url('/supplier/'.$d->id) }}">
+              @csrf
+              @method('DELETE')
+              <input type="submit" value="Hapus" class="btn btn-danger">
+            </form>
         </td>
       </tr>
     @endforeach
