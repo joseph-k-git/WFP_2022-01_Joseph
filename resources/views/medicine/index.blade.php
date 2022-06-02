@@ -3,9 +3,16 @@
 @section('content')
 
 <h3 class="page-title">
-    Daftar Obat <small>daftar semua bbat yang ada di apotik ini</small>
+    Daftar Obat <small>daftar semua obat yang ada di apotik ini</small>
 </h3>
 <div class="page-bar">
+
+    @if(session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+    @endif
+
     <ul class="page-breadcrumb">
         <li>
             <i class="fa fa-home"></i>

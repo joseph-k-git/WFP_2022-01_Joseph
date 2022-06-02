@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Medicine;
+use App\Category;
 use Illuminate\Http\Request;
 use DB;
 
@@ -40,7 +41,8 @@ class MedicineController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view("medicine.create", ["categories" => $categories]);
     }
 
     /**
@@ -51,7 +53,26 @@ class MedicineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request);
+        $medicine = new Medicine();
+        $medicine->generic_name = $request->get('name');
+        $medicine->form = $request->get('form');
+        $medicine->restriction_formula = $request->get('restriction');
+        $medicine->price = $request->get('price');
+        $medicine->faskes1 = ($request->get('faskes1') == 1) ? 1 : 0;
+        $medicine->faskes2 = ($request->get('faskes2') == 1) ? 1 : 0;
+        $medicine->faskes3 = ($request->get('faskes3') == 1) ? 1 : 0;
+        $medicine->category_id = $request->get('category');
+
+        $image = $request->file('image');
+        $medicine->image = time()." ".$medicine->generic_name.".".$image->extension();
+
+        $medicine->save();
+        
+        $destinationPath = public_path('images');
+        $image->move($destinationPath, $medicine->image);
+
+        return redirect()->route('medicine.index')->with('status','Medicine has been added');
     }
 
     /**
