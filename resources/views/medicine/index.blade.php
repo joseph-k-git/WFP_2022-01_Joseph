@@ -30,6 +30,9 @@
 </div>
 
 <div class="container">
+  <a class='btn btn-info' href="{{ route('medicine.create') }}">
+    Add New Medicine
+  </a>
   <table class="table table-hover">
     <thead>
       <tr>
@@ -59,6 +62,12 @@
           <a class='btn btn-info' href="{{ route('medicine.show', $d->id) }}" data-target="#show{{$d->id}}" data-toggle='modal'>
             Detail
           </a>
+          <a href="{{ url('/medicine/'.$d->id.'/edit') }}" class="btn btn-warning">Edit</a>
+          <form method="POST" action="{{ url('/medicine/'.$d->id) }}">
+            @csrf
+            @method('DELETE')
+            <input type="submit" value="Hapus" class="btn btn-danger" onclick="if(!confirm('Are you sure want to delete this record {{ $d->name }}?')) return false;">
+          </form>
         </td>
       </tr>
 

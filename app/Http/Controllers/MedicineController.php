@@ -59,6 +59,7 @@ class MedicineController extends Controller
         $medicine->form = $request->get('form');
         $medicine->restriction_formula = $request->get('restriction');
         $medicine->price = $request->get('price');
+        $medicine->description = $request->get('description');
         $medicine->faskes1 = ($request->get('faskes1') == 1) ? 1 : 0;
         $medicine->faskes2 = ($request->get('faskes2') == 1) ? 1 : 0;
         $medicine->faskes3 = ($request->get('faskes3') == 1) ? 1 : 0;
@@ -94,7 +95,9 @@ class MedicineController extends Controller
      */
     public function edit(Medicine $medicine)
     {
-        //
+        $data = $medicine;
+        $categories = Category::all();
+        return view('medicine.edit', compact('data', 'categories'));
     }
 
     /**
@@ -106,7 +109,28 @@ class MedicineController extends Controller
      */
     public function update(Request $request, Medicine $medicine)
     {
-        //
+        $medicine->generic_name = $request->get('name');
+        $medicine->form = $request->get('form');
+        $medicine->restriction_formula = $request->get('restriction');
+        $medicine->price = $request->get('price');
+        $medicine->description = $request->get('description');
+        $medicine->faskes1 = ($request->get('faskes1') == 1) ? 1 : 0;
+        $medicine->faskes2 = ($request->get('faskes2') == 1) ? 1 : 0;
+        $medicine->faskes3 = ($request->get('faskes3') == 1) ? 1 : 0;
+        $medicine->category_id = $request->get('category');
+
+        $image = $request->file('image');
+        if ($image) {
+            $destinationPath = public_path('images');
+            unlink($destinationPath.'/'.$medicine->image);
+
+            $medicine->image = time()." ".$medicine->generic_name.".".$image->extension();
+            $image->move($destinationPath, $medicine->image);
+        }
+
+        $medicine->save();
+
+        return redirect()->route('medicine.index')->with('status','Medicine has been edited');
     }
 
     /**
@@ -116,8 +140,16 @@ class MedicineController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Medicine $medicine)
-    {
-        //
+    {        
+        try {
+            $destinationPath = public_path('images');
+            unlink($destinationPath.'/'.$medicine->image);
+            $medicine->delete();
+            return redirect()->route('medicine.index')->with('status', 'Medicine data has been deleted');
+        } catch(\PDOException $e) {
+            $msg = "Data Gagal dihapus. Pastikan data child sudah hilang atau tidak berhubungan.";
+            return redirect()->route('medicine.index')->with('error', $msg);
+        }
     }
 
     public function coba1()
