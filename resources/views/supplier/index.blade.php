@@ -11,6 +11,10 @@
     <div class="alert alert-success">
         {{ session('status') }}
     </div>
+    @elseif(session('error'))
+    <div class="alert alert-success">
+        {{ session('error') }}
+    </div>
     @endif
 
     <ul class="page-breadcrumb">
@@ -50,7 +54,7 @@
             <form method="POST" action="{{ url('/supplier/'.$d->id) }}">
               @csrf
               @method('DELETE')
-              <input type="submit" value="Hapus" class="btn btn-danger">
+              <input type="submit" value="Hapus" class="btn btn-danger" onclick="if(!confirm('Are you sure want to delete this record {{ $d->name }}?')) return false;">
             </form>
         </td>
       </tr>

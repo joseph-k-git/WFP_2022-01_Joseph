@@ -95,6 +95,12 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
-        dd($supplier);
+        try {
+            $supplier->delete();
+            return redirect()->route('supplier.index')->with('status', 'Supplier data has been deleted');
+        } catch(\PDOException $e) {
+            $msg = "Data Gagal dihapus. Pastikan data child sudah hilang atau tidak berhubungan.";
+            return redirect()->route('supplier.index')->with('error', $msg);
+        }
     }
 }
