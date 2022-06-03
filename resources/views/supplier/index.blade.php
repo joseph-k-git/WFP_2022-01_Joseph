@@ -68,4 +68,37 @@
   </table>
 </div>
 
+<div class="modal fade" id="modalCreate" tabindex="-1" role="basic" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" >
+      <form role="form" method="POST" action="{{ route('supplier.store') }}">
+        @csrf
+        <div class="modal-header">
+          <button type="button" class="close" 
+            data-dismiss="modal" aria-hidden="true"></button>
+          <h4 class="modal-title">Add New Supplier</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-body">
+            <div class="form-group">
+              <label for="Supplier">Supplier</label>
+              <input type="text" class="form-control" id="" name="name" placeholder="Isikan nama supplier">
+              <span class="help-block">
+              Tulis nama lengkap perusahaan supplier. </span>
+            </div>
+            <div class="form-group">
+              <label>Alamat</label>
+              <textarea class="form-control" rows="3" name="address"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-info">Submit</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 @endsection
