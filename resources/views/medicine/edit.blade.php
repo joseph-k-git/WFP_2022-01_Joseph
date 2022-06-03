@@ -55,7 +55,7 @@
                         <div class="checkbox-list">
                             <input type="checkbox" id="faskes1" name="faskes1" value="1" <?php echo( ($data->faskes1 == 1) ? 'checked' : ''); ?> >Faskes 1<br>
                             <input type="checkbox" id="faskes2" name="faskes2" value="1" <?php echo( ($data->faskes2 == 1) ? 'checked' : ''); ?> >Faskes 2<br>
-                            <input type="checkbox" id="faskes3" name="faskes3" value="1" <?php echo( ($data->faskes2 == 1) ? 'checked' : ''); ?> >Faskes 3<br>
+                            <input type="checkbox" id="faskes3" name="faskes3" value="1" <?php echo( ($data->faskes3 == 1) ? 'checked' : ''); ?> >Faskes 3<br>
                         </div>
                     </div>
                     <div class="form-group">

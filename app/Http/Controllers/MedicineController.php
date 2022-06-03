@@ -24,6 +24,7 @@ class MedicineController extends Controller
 
         // Eloquent ORM
         $result = Medicine::all();
+        $categories = Category::all(); // W11: digunakan oleh modalCreate form
 
         //dd($result);
 
@@ -31,7 +32,7 @@ class MedicineController extends Controller
         //return view('medicine.index', compact('result'));
 
         // Array. Bisa berbeda nama untuk diterima di view.
-        return view('medicine.index', ['result' => $result]);
+        return view('medicine.index', ['result' => $result, 'categories' => $categories]);
     }
 
     /**
@@ -122,9 +123,10 @@ class MedicineController extends Controller
         $image = $request->file('image');
         if ($image) {
             $destinationPath = public_path('images');
-            unlink($destinationPath.'/'.$medicine->image);
+            $image_path = $destinationPath.'/'.$medicine->image;
+            if (file_exists($image_path)) unlink($image_path);
 
-            $medicine->image = time()." ".$medicine->generic_name.".".$image->extension();
+            $medicine->image = time()." ".$medicine->id.".".$image->extension();
             $image->move($destinationPath, $medicine->image);
         }
 
@@ -211,5 +213,88 @@ class MedicineController extends Controller
             ),
             200
         );
+    }
+
+    public function getEditFormA(Request $request)
+    {
+        $id = $request->get('id');
+        $data = Medicine::find($id);
+        $categories = Category::all();
+
+        return response()->json(array(
+            'status' => 'oke',
+            'msg' => view('medicine.getEditFormA', compact('data', 'categories'))->render(),
+        ), 200);
+    }
+
+    public function getEditFormB(Request $request)
+    {
+        $id = $request->get('id');
+        $data = Medicine::find($id);
+        $categories = Category::all();
+
+        return response()->json(array(
+            'status' => 'oke',
+            'msg' => view('medicine.getEditFormB', compact('data', 'categories'))->render(),
+        ), 200);
+    }
+
+    public function saveData(Request $request)
+    {
+        $id = $request->get('id');
+        $medicine = Medicine::find($id);
+        
+        $medicine->generic_name = $request->get('name');
+        $medicine->form = $request->get('form');
+        $medicine->restriction_formula = $request->get('restriction');
+        $medicine->price = $request->get('price');
+        $medicine->description = $request->get('description');
+        $medicine->faskes1 = ($request->get('faskes1') == 1) ? 1 : 0;
+        $medicine->faskes2 = ($request->get('faskes2') == 1) ? 1 : 0;
+        $medicine->faskes3 = ($request->get('faskes3') == 1) ? 1 : 0;
+        $medicine->category_id = $request->get('category');
+
+        $image = $request->file('image');
+        if ($image) {
+            $destinationPath = public_path('images');
+            $image_path = $destinationPath.'/'.$medicine->image;
+            if (file_exists($image_path)) unlink($image_path);
+
+            $medicine->image = time()." ".$medicine->id.".".$image->extension();
+            $image->move($destinationPath, $medicine->image);
+        }
+
+        $medicine->save();
+
+        return response()->json(array(
+            'status' => 'OK',
+            'category_name' => $medicine->category->name,
+            'image' => $medicine->image,
+            'msg' => 'Sukses EditB data medicine',
+        ), 200);
+    }
+
+    public function deleteData(Request $request)
+    {
+        try {
+            $id = $request->get('id');
+            $medicine = Medicine::find($id);
+
+            $destinationPath = public_path('images');
+            $image_path = $destinationPath.'/'.$medicine->image;
+            if (file_exists($image_path)) unlink($image_path);
+    
+            $medicine->delete();
+    
+            return response()->json(array(
+                'status' => 'OK',
+                'msg' => 'Sukses DELete data medicine',
+            ), 200);
+        } catch(\PDOException $e) {
+            return response()->json(array(
+                'status' => 'fail',
+                'msg' => 'Failed to DELete data medicine',
+            ), 200);
+        }
     }
 }
