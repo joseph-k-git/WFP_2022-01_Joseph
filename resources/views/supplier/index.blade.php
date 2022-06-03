@@ -6,6 +6,10 @@
     List of Suppliers <small>daftar semua supplier</small>
 </h3>
 <div class="page-bar">
+
+    <div class='page-toolbar'>
+        <a href="{{ url('suppliers/create') }}" class="btn btn-info">Add Supplier</a>
+    </div>
   
     @if(session('status'))
     <div class="alert alert-success">
