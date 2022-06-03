@@ -34,3 +34,5 @@ Route::get('/report/highestprices', 'CategoryController@highest_price_per_catego
 Route::post('/medicine/showInfo', 'MedicineController@showInfo')->name('medicine.showInfo');
 
 Route::post('/transaction/showDataAjax', 'TransactionController@showAjax')->name('transaction.showAjax');
+
+Route::post('/supplier/getEditForm', 'SupplierController@getEditForm')->name('supplier.getEditForm');

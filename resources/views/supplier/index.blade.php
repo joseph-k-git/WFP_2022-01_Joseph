@@ -55,7 +55,8 @@
         <td>{{ $d->name }}</td>
         <td>{{ $d->address }}</td>
         <td>
-            <a href="{{ url('/supplier/'.$d->id.'/edit') }}" class="btn btn-warning">Edit</a>
+            <a href="{{ url('/supplier/'.$d->id.'/edit') }}" class="btn btn-xs btn-warning">Edit</a>
+            <a href="#modalEdit" data-toggle="modal" class="btn btn-xs btn-warning" onclick="getEditForm({{ $d->id }})">Edit A</a>
             <form method="POST" action="{{ url('/supplier/'.$d->id) }}">
               @csrf
               @method('DELETE')
@@ -101,4 +102,34 @@
   </div>
 </div>
 
+<div class="modal fade" id="modalEdit" tabindex="-1" role="basic" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" id="modalEditContent">
+      <div style="text-align:center;">
+        <img src="{{ asset('assets/img/loading.gif') }}">
+      </div>
+    </div>
+  </div>
+</div>
+
+@endsection
+
+@section('javascript')
+<script>
+    function getEditForm(id)
+    {
+        $.ajax({
+            type: 'POST',
+            url: '{{ route("supplier.getEditForm") }}',
+            data: {
+              '_token':'<?php echo csrf_token() ?>',
+              'id':id,
+            },
+            success: function(data)
+            {
+                $('#modalEditContent').html(data.msg);
+            },
+        });
+    }
+</script>
 @endsection

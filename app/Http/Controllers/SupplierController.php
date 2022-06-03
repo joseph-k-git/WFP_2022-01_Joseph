@@ -103,4 +103,15 @@ class SupplierController extends Controller
             return redirect()->route('supplier.index')->with('error', $msg);
         }
     }
+
+    public function getEditForm(Request $request)
+    {
+        $id = $request->get('id');
+        $data = Supplier::find($id);
+
+        return response()->json(array(
+            'status' => 'oke',
+            'msg' => view('supplier.getEditForm', compact('data'))->render(),
+        ), 200);
+    }
 }
