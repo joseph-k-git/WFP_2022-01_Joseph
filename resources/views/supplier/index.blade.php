@@ -9,6 +9,7 @@
 
     <div class='page-toolbar'>
         <a href="{{ url('suppliers/create') }}" class="btn btn-info">Add Supplier</a>
+        <a href="#modalCreate" data-toggle="modal" class="btn btn-info">Add Supplier with Modal</a>
     </div>
   
     @if(session('status'))
