@@ -35,4 +35,8 @@ Route::post('/medicine/showInfo', 'MedicineController@showInfo')->name('medicine
 
 Route::post('/transaction/showDataAjax', 'TransactionController@showAjax')->name('transaction.showAjax');
 
-Route::post('/supplier/getEditForm', 'SupplierController@getEditForm')->name('supplier.getEditForm');
+Route::post('/supplier/getEditFormA', 'SupplierController@getEditFormA')->name('supplier.getEditFormA');
+
+Route::post('/supplier/getEditFormB', 'SupplierController@getEditFormB')->name('supplier.getEditFormB');
+
+Route::post('/supplier/saveData', 'SupplierController@saveData')->name('supplier.saveData');

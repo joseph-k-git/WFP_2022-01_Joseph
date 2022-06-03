@@ -17,10 +17,14 @@
         {{ session('status') }}
     </div>
     @elseif(session('error'))
-    <div class="alert alert-success">
+    <div class="alert alert-danger">
         {{ session('error') }}
     </div>
     @endif
+    
+    <div class="note note-success" id="pesan" style="display:none;">
+        {{ session('status') }}
+    </div>
 
     <ul class="page-breadcrumb">
         <li>
@@ -52,11 +56,12 @@
     <tbody>
     @foreach($result as $d)
       <tr>
-        <td>{{ $d->name }}</td>
-        <td>{{ $d->address }}</td>
+        <td id="td_name_{{ $d->id }}">{{ $d->name }}</td>
+        <td id="td_address_{{ $d->id }}">{{ $d->address }}</td>
         <td>
             <a href="{{ url('/supplier/'.$d->id.'/edit') }}" class="btn btn-xs btn-warning">Edit</a>
-            <a href="#modalEdit" data-toggle="modal" class="btn btn-xs btn-warning" onclick="getEditForm({{ $d->id }})">Edit A</a>
+            <a href="#modalEdit" data-toggle="modal" class="btn btn-xs btn-warning" onclick="getEditFormA({{ $d->id }})">Edit A</a>
+            <a href="#modalEdit" data-toggle="modal" class="btn btn-xs btn-warning" onclick="getEditFormB({{ $d->id }})">Edit B</a>
             <form method="POST" action="{{ url('/supplier/'.$d->id) }}">
               @csrf
               @method('DELETE')
@@ -116,11 +121,11 @@
 
 @section('javascript')
 <script>
-    function getEditForm(id)
+    function getEditFormA(id)
     {
         $.ajax({
             type: 'POST',
-            url: '{{ route("supplier.getEditForm") }}',
+            url: '{{ route("supplier.getEditFormA") }}',
             data: {
               '_token':'<?php echo csrf_token() ?>',
               'id':id,
@@ -128,6 +133,49 @@
             success: function(data)
             {
                 $('#modalEditContent').html(data.msg);
+            },
+        });
+    }
+
+    function getEditFormB(id)
+    {
+        $.ajax({
+            type: 'POST',
+            url: '{{ route("supplier.getEditFormB") }}',
+            data: {
+              '_token':'<?php echo csrf_token() ?>',
+              'id':id,
+            },
+            success: function(data)
+            {
+                $('#modalEditContent').html(data.msg);
+            },
+        });
+    }
+
+    function saveDataUpdateTD(id)
+    {
+        var eName = $('#eName').val()
+        var eAddress = $('#eAddress').val()
+
+        $.ajax({
+            type: 'POST',
+            url: '{{ route("supplier.saveData") }}',
+            data: {
+              '_token':'<?php echo csrf_token() ?>',
+              'id':id,
+              'name':eName,
+              'address':eAddress,
+            },
+            success: function(data)
+            {
+                if (data.status=='OK') {
+                    $('#td_name_'+id).html(eName)
+                    $('#td_address_'+id).html(eAddress)
+                    $('#pesan').html(data.msg);
+                    $('#pesan').show(); //display
+                    //alert(data.msg);
+                }
             },
         });
     }

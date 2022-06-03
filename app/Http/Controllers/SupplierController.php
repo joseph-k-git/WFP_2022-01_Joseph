@@ -104,14 +104,40 @@ class SupplierController extends Controller
         }
     }
 
-    public function getEditForm(Request $request)
+    public function getEditFormA(Request $request)
     {
         $id = $request->get('id');
         $data = Supplier::find($id);
 
         return response()->json(array(
             'status' => 'oke',
-            'msg' => view('supplier.getEditForm', compact('data'))->render(),
+            'msg' => view('supplier.getEditFormA', compact('data'))->render(),
+        ), 200);
+    }
+
+    public function getEditFormB(Request $request)
+    {
+        $id = $request->get('id');
+        $data = Supplier::find($id);
+
+        return response()->json(array(
+            'status' => 'oke',
+            'msg' => view('supplier.getEditFormB', compact('data'))->render(),
+        ), 200);
+    }
+
+    public function saveData(Request $request)
+    {
+        $id = $request->get('id');
+        $supplier = Supplier::find($id);
+        $supplier->name = $request->get('name');
+        $supplier->address = $request->get('address');
+
+        $supplier->save();
+
+        return response()->json(array(
+            'status' => 'OK',
+            'msg' => 'Sukses EditB data supplier',
         ), 200);
     }
 }
