@@ -40,3 +40,5 @@ Route::post('/supplier/getEditFormA', 'SupplierController@getEditFormA')->name('
 Route::post('/supplier/getEditFormB', 'SupplierController@getEditFormB')->name('supplier.getEditFormB');
 
 Route::post('/supplier/saveData', 'SupplierController@saveData')->name('supplier.saveData');
+
+Route::post('/supplier/deleteData', 'SupplierController@deleteData')->name('supplier.deleteData');

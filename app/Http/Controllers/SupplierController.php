@@ -140,4 +140,24 @@ class SupplierController extends Controller
             'msg' => 'Sukses EditB data supplier',
         ), 200);
     }
+
+    public function deleteData(Request $request)
+    {
+        try {
+            $id = $request->get('id');
+            $supplier = Supplier::find($id);
+    
+            $supplier->delete();
+    
+            return response()->json(array(
+                'status' => 'OK',
+                'msg' => 'Sukses DELete data supplier',
+            ), 200);
+        } catch(\PDOException $e) {
+            return response()->json(array(
+                'status' => 'fail',
+                'msg' => 'Failed to DELete data supplier',
+            ), 200);
+        }
+    }
 }

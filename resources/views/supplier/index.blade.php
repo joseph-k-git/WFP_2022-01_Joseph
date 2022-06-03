@@ -55,13 +55,14 @@
     </thead>
     <tbody>
     @foreach($result as $d)
-      <tr>
+      <tr id="tr_{{ $d->id }}">
         <td id="td_name_{{ $d->id }}">{{ $d->name }}</td>
         <td id="td_address_{{ $d->id }}">{{ $d->address }}</td>
         <td>
             <a href="{{ url('/supplier/'.$d->id.'/edit') }}" class="btn btn-xs btn-warning">Edit</a>
             <a href="#modalEdit" data-toggle="modal" class="btn btn-xs btn-warning" onclick="getEditFormA({{ $d->id }})">Edit A</a>
             <a href="#modalEdit" data-toggle="modal" class="btn btn-xs btn-warning" onclick="getEditFormB({{ $d->id }})">Edit B</a>
+            <a class="btn btn-xs btn-danger" onclick="if(confirm('Apakah Anda yakin menghapus {{ $d->name }}?')) deleteDataRemoveTR({{ $d->id }})">DEL</a>
             <form method="POST" action="{{ url('/supplier/'.$d->id) }}">
               @csrf
               @method('DELETE')
@@ -179,5 +180,24 @@
             },
         });
     }
+
+function deleteDataRemoveTR(id)
+{
+    $.ajax({
+        type: 'POST',
+        url: '{{ route("supplier.deleteData") }}',
+        data: {
+          '_token':'<?php echo csrf_token() ?>',
+          'id':id,
+        },
+        success: function(data)
+        {
+            if (data.status=='OK') {
+                $('#tr_'+id).remove();
+            }
+            alert(data.msg);
+        },
+    });
+}
 </script>
 @endsection
