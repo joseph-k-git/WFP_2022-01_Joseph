@@ -95,6 +95,8 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
+        $this->authorize('delete-permission');
+
         try {
             $supplier->delete();
             return redirect()->route('supplier.index')->with('status', 'Supplier data has been deleted');
