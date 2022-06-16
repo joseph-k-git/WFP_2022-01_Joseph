@@ -69,12 +69,14 @@
           <a href="{{ url('/medicine/'.$d->id.'/edit') }}" class="btn btn-xs btn-warning">Edit</a>
           <a href="#modalEdit" data-toggle="modal" class="btn btn-xs btn-warning" onclick="getEditFormA({{ $d->id }})">Edit A</a>
           <a href="#modalEdit" data-toggle="modal" class="btn btn-xs btn-warning" onclick="getEditFormB({{ $d->id }})">Edit B</a>
+          @can('delete-permission')
           <a class="btn btn-xs btn-danger" onclick="if(confirm('Apakah Anda yakin menghapus {{ $d->name }}?')) deleteDataRemoveTR({{ $d->id }})">DEL</a>
           <form method="POST" action="{{ url('/medicine/'.$d->id) }}">
             @csrf
             @method('DELETE')
             <input type="submit" value="Hapus" class="btn btn-danger" onclick="if(!confirm('Are you sure want to delete this record {{ $d->name }}?')) return false;">
           </form>
+          @endcan
         </td>
       </tr>
 

@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/medicine', 'MedicineController');
+Route::resource('/medicine', 'MedicineController')->middleware('auth');
 
 Route::resource('/category', 'CategoryController');
 
@@ -25,23 +25,27 @@ Route::resource('/supplier', 'SupplierController')->middleware('auth');
 
 Route::resource('/transaction', 'TransactionController');
 
-Route::get('/coba1', 'MedicineController@coba1');
+Route::get('/coba1', 'MedicineController@coba1')->middleware('auth');
 
 Route::get('/report/listmedicine/{id}', 'CategoryController@showlist')->name('reportShowMedicine');
 
 Route::get('/report/highestprices', 'CategoryController@highest_price_per_category')->name('reportHighestPricePerCategory');
 
-Route::post('/medicine/showInfo', 'MedicineController@showInfo')->name('medicine.showInfo');
+Route::middleware(['auth'])->group(function() {
 
-Route::post('/medicine/getEditFormA', 'MedicineController@getEditFormA')->name('medicine.getEditFormA');
+    Route::post('/medicine/showInfo', 'MedicineController@showInfo')->name('medicine.showInfo');
+    
+    Route::post('/medicine/getEditFormA', 'MedicineController@getEditFormA')->name('medicine.getEditFormA');
+    
+    Route::post('/medicine/getEditFormB', 'MedicineController@getEditFormB')->name('medicine.getEditFormB');
+    
+    Route::post('/medicine/saveData', 'MedicineController@saveData')->name('medicine.saveData');
+    
+    Route::post('/medicine/deleteData', 'MedicineController@deleteData')->name('medicine.deleteData');
+    
+    Route::post('/transaction/showDataAjax', 'TransactionController@showAjax')->name('transaction.showAjax');
 
-Route::post('/medicine/getEditFormB', 'MedicineController@getEditFormB')->name('medicine.getEditFormB');
-
-Route::post('/medicine/saveData', 'MedicineController@saveData')->name('medicine.saveData');
-
-Route::post('/medicine/deleteData', 'MedicineController@deleteData')->name('medicine.deleteData');
-
-Route::post('/transaction/showDataAjax', 'TransactionController@showAjax')->name('transaction.showAjax');
+});
 
 Route::middleware(['auth'])->group(function() {
 

@@ -142,7 +142,9 @@ class MedicineController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Medicine $medicine)
-    {        
+    {
+        $this->authorize('delete-permission');
+        
         try {
             $destinationPath = public_path('images');
             unlink($destinationPath.'/'.$medicine->image);
