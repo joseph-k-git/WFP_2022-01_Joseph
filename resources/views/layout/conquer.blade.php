@@ -98,7 +98,10 @@ License: You must have a valid license purchased only from themeforest(the above
                     <li class="divider">
                     </li>
                     <li>
-                        <a href="login.html"><i class="fa fa-key"></i> Log Out</a>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <i class="fa fa-key"></i></a> <input class="btn btn-danger" type="submit" value="logout"/>
+                        </form>
                     </li>
                 </ul>
             </li>
