@@ -26,6 +26,24 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="sebagai" class="col-md-4 col-form-label text-md-right">Sebagai</label>
+
+                            <div class="col-md-6">
+                                <input type="radio" id="owner" name="roles" value="owner">
+                                <label for="owner">Pemilik</label><br>
+
+                                <input type="radio" id="pegawai" name="roles" value="pegawai">
+                                <label for="pegawai">Karyawan</label><br>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
