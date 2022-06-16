@@ -21,7 +21,7 @@ Route::resource('/medicine', 'MedicineController');
 
 Route::resource('/category', 'CategoryController');
 
-Route::resource('/supplier', 'SupplierController');
+Route::resource('/supplier', 'SupplierController')->middleware('auth');
 
 Route::resource('/transaction', 'TransactionController');
 
@@ -43,13 +43,16 @@ Route::post('/medicine/deleteData', 'MedicineController@deleteData')->name('medi
 
 Route::post('/transaction/showDataAjax', 'TransactionController@showAjax')->name('transaction.showAjax');
 
-Route::post('/supplier/getEditFormA', 'SupplierController@getEditFormA')->name('supplier.getEditFormA');
+Route::middleware(['auth'])->group(function() {
 
-Route::post('/supplier/getEditFormB', 'SupplierController@getEditFormB')->name('supplier.getEditFormB');
-
-Route::post('/supplier/saveData', 'SupplierController@saveData')->name('supplier.saveData');
-
-Route::post('/supplier/deleteData', 'SupplierController@deleteData')->name('supplier.deleteData');
+    Route::post('/supplier/getEditFormA', 'SupplierController@getEditFormA')->name('supplier.getEditFormA');
+    
+    Route::post('/supplier/getEditFormB', 'SupplierController@getEditFormB')->name('supplier.getEditFormB');
+    
+    Route::post('/supplier/saveData', 'SupplierController@saveData')->name('supplier.saveData');
+    
+    Route::post('/supplier/deleteData', 'SupplierController@deleteData')->name('supplier.deleteData');
+});
 
 Auth::routes();
 
