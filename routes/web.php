@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'MedicineController@front_index');
 
+Route::get('add-to-cart/{id}','MedicineController@addToCart');
+
 Route::resource('/medicine', 'MedicineController')->middleware('auth');
 
 Route::resource('/category', 'CategoryController');

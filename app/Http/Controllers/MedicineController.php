@@ -305,4 +305,24 @@ class MedicineController extends Controller
         $products = Medicine::all();
         return view('frontend.product', compact('products'));
     }
+
+    public function addToCart($id)
+    {
+        $p = Medicine::find($id);
+
+        $cart = session()->get('cart');
+        if (!isset($cart[$id])) {
+            $cart[$id] = [
+                'name' => $p->generic_name." (".$p->form.")",
+                'quantity' => 1,
+                'price' => $p->price,
+                'photo' => $p->image,
+            ];
+        } else {
+            $cart[$id]['quantity'] += 1;
+        }
+        session()->put('cart', $cart);
+
+        return redirect()->back()->with('success', 'Product '.$cart[$id]['name'].' added to cart successfully');
+    }
 }

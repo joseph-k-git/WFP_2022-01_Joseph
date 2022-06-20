@@ -4,6 +4,12 @@
 
 @section('content')
 
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
     <div class="container products">
 
         <div class="row">
@@ -17,7 +23,7 @@
                         <p>formula: {{ $p->restriction_formula }}</p>
                         <p>{{ $p->description }}</p>
                         <p><strong>Price: </strong> Rp{{ $p->price }}</p>
-                        <p class="btn-holder"><a href="#" class="btn btn-warning btn-block text-center" role="button">Add to cart</a> </p>
+                        <p class="btn-holder"><a href="{{ url('add-to-cart/'.$p->id) }}" class="btn btn-warning btn-block text-center" role="button">Add to cart</a> </p>
                     </div>
                 </div>
             </div>
