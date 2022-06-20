@@ -108,7 +108,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12 col-sm-12 col-12 text-center checkout">
-                            <a href="{{ url('cart') }}" class="btn btn-primary btn-block">View all</a>
+                            <a href="{{ url('checkout') }}" class="btn btn-danger btn-block">Checkout</a>
                         </div>
                     </div>
                 </div>

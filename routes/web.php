@@ -17,6 +17,8 @@ Route::get('/', 'MedicineController@front_index');
 
 Route::get('add-to-cart/{id}','MedicineController@addToCart');
 
+Route::get('checkout','MedicineController@checkout');
+
 Route::resource('/medicine', 'MedicineController')->middleware('auth');
 
 Route::resource('/category', 'CategoryController');

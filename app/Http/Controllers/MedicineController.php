@@ -325,4 +325,9 @@ class MedicineController extends Controller
 
         return redirect()->back()->with('success', 'Product '.$cart[$id]['name'].' added to cart successfully');
     }
+
+    public function checkout()
+    {
+        return view('frontend.checkout');
+    }
 }
