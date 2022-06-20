@@ -299,4 +299,10 @@ class MedicineController extends Controller
             ), 200);
         }
     }
+
+    public function front_index()
+    {
+        $products = Medicine::all();
+        return view('frontend.product', compact('products'));
+    }
 }

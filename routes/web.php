@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'MedicineController@front_index');
 
 Route::resource('/medicine', 'MedicineController')->middleware('auth');
 
