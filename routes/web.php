@@ -15,9 +15,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'MedicineController@front_index');
 
-Route::get('add-to-cart/{id}','MedicineController@addToCart');
+Route::get('/add-to-cart/{id}','MedicineController@addToCart');
 
-Route::get('checkout','MedicineController@checkout');
+Route::middleware(['auth'])->group(function() {
+
+    Route::get('/checkout','MedicineController@checkout');
+    
+    Route::get('/submit_checkout','TransactionController@submit_front')->name('submitcheckout');
+
+});
 
 Route::resource('/medicine', 'MedicineController')->middleware('auth');
 

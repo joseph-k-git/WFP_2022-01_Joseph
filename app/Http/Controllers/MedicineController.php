@@ -328,6 +328,7 @@ class MedicineController extends Controller
 
     public function checkout()
     {
+        $this->authorize('checkmember');
         return view('frontend.checkout');
     }
 }

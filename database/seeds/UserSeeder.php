@@ -29,5 +29,11 @@ class UserSeeder extends Seeder
             'password' => Hash::make('pegawaipegawai2'), // https://laravel.com/docs/7.x/hashing
             'sebagai' => 'pegawai',
         ]);
+        DB::table('users')->insert([
+            'name' => 'Member',
+            'email' => 'member'.'@gmail.com',
+            'password' => Hash::make('membermember'), // https://laravel.com/docs/7.x/hashing
+            'sebagai' => 'member',
+        ]);
     }
 }

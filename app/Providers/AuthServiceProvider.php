@@ -28,5 +28,6 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('delete-permission', function($user) {
             return ($user->sebagai == 'owner');
         });
+        Gate::define('checkmember', 'App\Policies\MemberPolicy@checkmember');
     }
 }

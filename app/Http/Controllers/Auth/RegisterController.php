@@ -29,7 +29,27 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    //protected $redirectTo = RouteServiceProvider::HOME;
+    public function redirectTo()
+    {
+        $role = Auth::user()->sebagai;
+
+        switch ($role)
+        {
+            case 'owner':
+                return '/supplier';
+                break;
+            case 'pegawai':
+                return '/medicine';
+                break;
+            case 'member':
+                return '/checkout';
+                break;
+            default:
+                return '/';
+                break;
+        }
+    }
 
     /**
      * Create a new controller instance.

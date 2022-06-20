@@ -56,7 +56,7 @@
         <tr>
             <td><a href="{{ url('/') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
             <td colspan="2" class="hidden-xs"></td>
-            <td><a href="{{ url('/') }}" class="btn btn-danger">Confirm Checkout <i class="fa fa-angle-right"></i></a></td>
+            <td><a href="{{ route('submitcheckout') }}" class="btn btn-danger">Confirm Checkout <i class="fa fa-angle-right"></i></a></td>
         </tr>
         </tfoot>
     </table>
